@@ -16,6 +16,7 @@ status_counts = {
 }
 line_count = 0
 
+
 def print_stats():
     """Print the accumulated metrics"""
     print(f"File size: {total_size}")
@@ -23,10 +24,12 @@ def print_stats():
         if status_counts[status_code] > 0:
             print(f"{status_code}: {status_counts[status_code]}")
 
+
 def handle_interrupt(signum, frame):
     """Handle keyboard interrupt (CTRL + C)"""
     print_stats()
     sys.exit(0)
+
 
 # Register the signal handler for CTRL + C
 signal.signal(signal.SIGINT, handle_interrupt)
@@ -76,4 +79,3 @@ except KeyboardInterrupt:
     handle_interrupt(None, None)
 finally:
     print_stats()
-
