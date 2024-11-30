@@ -1,17 +1,25 @@
+#!/usr/bin/python3
+""" 0x08. Making Change """
+
 def makeChange(coins, total):
+    """ Return: fewest number of coins needed to meet total """
     if total <= 0:
         return 0
     
-    # Initialize dp array where dp[i] will store the fewest coins needed to make the amount i
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0  # No coins are needed to make 0
-    
-    # Iterate through each coin
-    for coin in coins:
-        for i in range(coin, total + 1):
-            if dp[i - coin] != float('inf'):
-                dp[i] = min(dp[i], dp[i - coin] + 1)
-    
-    # If dp[total] is still infinity, return -1 (not possible to make total)
-    return dp[total] if dp[total] != float('inf') else -1
+    """ To sort the coins in reverse """
+    coins.sort(reverse=True)
+    number_of_changes = 0
+    total_changes = 0
 
+    for coin in coins:
+        while total_changes < total:
+            total_changes += coin
+            number_of_changes += 1
+
+        if total_changes == total:
+            return total_changes
+        
+        total_changes -= coin
+        number_of_changes -= 1
+
+    return -1
