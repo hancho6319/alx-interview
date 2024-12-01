@@ -18,7 +18,7 @@ def makeChange(coins, total):
             number_of_changes += 1
 
         if total_changes == total:
-            return total_changes
+            return number_of_changes
 
         total_changes -= coin
         number_of_changes -= 1
