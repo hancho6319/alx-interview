@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def island_perimeter(grid):
     """
      0x09. Island Perimeter
